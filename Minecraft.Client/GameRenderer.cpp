@@ -223,10 +223,6 @@ void GameRenderer::tick(bool first)		// 4J - add bFirst
 
 	itemInHandRenderer->tick();
 
-	PIXBeginNamedEvent(0,"Rain tick");
-	tickRain();
-	PIXEndNamedEvent();
-
 	darkenWorldAmountO = darkenWorldAmount;
 	if (BossMobGuiInfo::darkenWorld)
 	{
@@ -753,7 +749,7 @@ void GameRenderer::renderItemInHand(float a, int eye)
 		{
 			if (!mc->options->hideGui && !mc->gameMode->isCutScene())
 			{
-				turnOnLightLayer(a);
+				//turnOnLightLayer(a);
 				PIXBeginNamedEvent(0,"Item in hand render");
 				itemInHandRenderer->render(a);
 				PIXEndNamedEvent();
@@ -793,56 +789,57 @@ void GameRenderer::turnOffLightLayer(double alpha)
 }
 
 // 4J - change brought forward from 1.8.2
-void GameRenderer::turnOnLightLayer(double alpha)
-{	// 4J - TODO
-#if 0
-	if (SharedConstants::TEXTURE_LIGHTING)
-	{
-		glClientActiveTexture(GL_TEXTURE1);
-		glActiveTexture(GL_TEXTURE1);
-		glMatrixMode(GL_TEXTURE);
-		glLoadIdentity();
+//void GameRenderer::turnOnLightLayer(double alpha)
+//{	// 4J - TODO
+//#if 0
+//	if (SharedConstants::TEXTURE_LIGHTING)
+//	{
+//		glClientActiveTexture(GL_TEXTURE1);
+//		glActiveTexture(GL_TEXTURE1);
+//		glMatrixMode(GL_TEXTURE);
+//		glLoadIdentity();
 		// float s = 1 / 16f / 15.0f*16/14.0f;
-		float s = 1 / 16.0f / 15.0f * 15 / 16;
-		glScalef(s, s, s);
-		glTranslatef(8f, 8f, 8f);
-		glMatrixMode(GL_MODELVIEW);
-
-		mc->textures->bind(lightTexture);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-		glColor4f(1, 1, 1, 1);
-		glEnable(GL_TEXTURE_2D);
-		glClientActiveTexture(GL_TEXTURE0);
-		glActiveTexture(GL_TEXTURE0);
-	}
-#endif
-	RenderManager.TextureBindVertex(getLightTexture(mc->player->GetXboxPad(), mc->level));
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-}
+//		float s = 1 / 16.0f / 15.0f * 15 / 16;
+//		glScalef(s, s, s);
+//		glTranslatef(8f, 8f, 8f);
+//		glMatrixMode(GL_MODELVIEW);
+//
+//		mc->textures->bind(lightTexture);
+//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//
+//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+//		glColor4f(1, 1, 1, 1);
+//		glEnable(GL_TEXTURE_2D);
+//		glClientActiveTexture(GL_TEXTURE0);
+//		glActiveTexture(GL_TEXTURE0);
+//	}
+//#endif
+//	RenderManager.TextureBindVertex(getLightTexture(mc->player->GetXboxPad(), mc->level));
+//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+//}
 
 // 4J - change brought forward from 1.8.2
-void GameRenderer::tickLightTexture()
-{
-	blrt += static_cast<float>((Math::random() - Math::random()) * Math::random() * Math::random());
-	blgt += static_cast<float>((Math::random() - Math::random()) * Math::random() * Math::random());
-	blrt *= 0.9;
-	blgt *= 0.9;
-	blr += (blrt - blr) * 1;
-	blg += (blgt - blg) * 1;
-	_updateLightTexture = true;
-}
+//void GameRenderer::tickLightTexture()
+//{
+//	blrt += static_cast<float>((Math::random() - Math::random()) * Math::random() * Math::random());
+//	blgt += static_cast<float>((Math::random() - Math::random()) * Math::random() * Math::random());
+//	blrt *= 0.9;
+//	blgt *= 0.9;
+//	blr += (blrt - blr) * 1;
+//	blg += (blgt - blg) * 1;
+//	_updateLightTexture = true;
+//}
 
 void GameRenderer::updateLightTexture(float a)
 {
+#if 0
     CachePlayerGammas();
 
     for (int j = 0; j < XUSER_MAX_COUNT; j++)
@@ -938,6 +935,7 @@ void GameRenderer::updateLightTexture(float a)
 
         mc->textures->replaceTextureDirect(lightPixels[j], 16, 16, getLightTexture(j, level));
     }
+#endif
 }
 
 float GameRenderer::ComputeGammaFromSlider(float slider0to100)
@@ -1494,7 +1492,7 @@ void GameRenderer::renderLevel(float a, int64_t until)
 #endif
 			PIXEndNamedEvent();
 			PIXBeginNamedEvent(0,"Particle render");
-			turnOnLightLayer(a);		// 4J - brought forward from 1.8.2
+			//turnOnLightLayer(a);		// 4J - brought forward from 1.8.2
 			particleEngine->renderLit(cameraEntity, a, ParticleEngine::OPAQUE_LIST);
 			Lighting::turnOff();
 			setupFog(0, a);
@@ -1556,7 +1554,7 @@ void GameRenderer::renderLevel(float a, int64_t until)
 		// 4J - added - have split out translucent particle rendering so that it happens after the water is rendered, primarily for fireworks
 		PIXBeginNamedEvent(0,"Particle render (translucent)");
 		Lighting::turnOn();
-		turnOnLightLayer(a);		// 4J - brought forward from 1.8.2
+		//turnOnLightLayer(a);		// 4J - brought forward from 1.8.2
 		particleEngine->renderLit(cameraEntity, a, ParticleEngine::TRANSLUCENT_LIST);
 		Lighting::turnOff();
 		setupFog(0, a);
@@ -1727,7 +1725,7 @@ void GameRenderer::renderSnowAndRain(float a)
 	// 4J - rain is relatively low poly, but high fill-rate - better to clip it
 	RenderManager.StateSetEnableViewportClipPlanes(true);
 
-	turnOnLightLayer(a);
+	//turnOnLightLayer(a);
 
 	if (rainXa == nullptr)
 	{
