@@ -16,6 +16,7 @@ void Lighting::turnOff()
 
 void Lighting::turnOn()
 {
+#if 0
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glEnable(GL_LIGHT1);
@@ -39,7 +40,7 @@ void Lighting::turnOn()
 
     glShadeModel(GL_FLAT);
     glLightModel(GL_LIGHT_MODEL_AMBIENT, getBuffer(a, a, a, 1));
-
+#endif
 }
 
 FloatBuffer *Lighting::getBuffer(double a, double b, double c, double d)
