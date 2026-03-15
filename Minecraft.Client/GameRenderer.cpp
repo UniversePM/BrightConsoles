@@ -822,16 +822,19 @@ void GameRenderer::turnOnLightLayer(double alpha)
 		glActiveTexture(GL_TEXTURE0);
 	}
 #endif
+#if 0
 	RenderManager.TextureBindVertex(getLightTexture(mc->player->GetXboxPad(), mc->level));
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+#endif
 }
 
 // 4J - change brought forward from 1.8.2
 void GameRenderer::tickLightTexture()
 {
+#if 0
 	blrt += static_cast<float>((Math::random() - Math::random()) * Math::random() * Math::random());
 	blgt += static_cast<float>((Math::random() - Math::random()) * Math::random() * Math::random());
 	blrt *= 0.9;
@@ -839,10 +842,12 @@ void GameRenderer::tickLightTexture()
 	blr += (blrt - blr) * 1;
 	blg += (blgt - blg) * 1;
 	_updateLightTexture = true;
+#endif
 }
 
 void GameRenderer::updateLightTexture(float a)
 {
+#if 0
     CachePlayerGammas();
 
     for (int j = 0; j < XUSER_MAX_COUNT; j++)
@@ -938,6 +943,7 @@ void GameRenderer::updateLightTexture(float a)
 
         mc->textures->replaceTextureDirect(lightPixels[j], 16, 16, getLightTexture(j, level));
     }
+#endif
 }
 
 float GameRenderer::ComputeGammaFromSlider(float slider0to100)
