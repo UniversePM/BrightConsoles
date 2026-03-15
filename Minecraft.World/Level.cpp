@@ -1456,10 +1456,11 @@ void Level::setTileBrightnessChanged(int x, int y, int z)
 
 int Level::getLightColor(int x, int y, int z, int emitt, int tileId/*=-1*/)
 {
-	int s = getBrightnessPropagate(LightLayer::Sky, x, y, z, tileId);
-	int b = getBrightnessPropagate(LightLayer::Block, x, y, z, tileId);
-	if (b < emitt) b = emitt;
-	return s << 20 | b << 4;
+	//int s = getBrightnessPropagate(LightLayer::Sky, x, y, z, tileId);
+	//int b = getBrightnessPropagate(LightLayer::Block, x, y, z, tileId);
+	//if (b < emitt) b = emitt;
+	//return s << 20 | b << 4;
+	return (15 << 20) | (15 << 4); // pray to god this works? - uni
 }
 
 float Level::getBrightness(int x, int y, int z, int emitt)
