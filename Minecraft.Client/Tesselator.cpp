@@ -521,9 +521,9 @@ void Tesselator::tileQuad(float x1, float y1, float z1, float u1, float v1, floa
 		vertices2+=4;
 	}
 
-		int r = ((int) (r1 * 31)) << 11;
-		int g = ((int) (g1 * 63)) << 5;
-		int b = ((int) (b1 * 31));
+		int r = ((int)31) << 11;
+		int g = ((int)63) << 5;
+		int b = ((int)31);
 		int ipackedcol = r | g | b;
 		ipackedcol -= 32768;	// -32768 to 32767 range
 		ipackedcol &= 0xffff;
@@ -538,9 +538,9 @@ void Tesselator::tileQuad(float x1, float y1, float z1, float u1, float v1, floa
 		((int *)pShortData)[3] = tex1;
 		pShortData += 8;
 
-		r = ((int) (r2 * 31)) << 11;
-		g = ((int) (g2 * 63)) << 5;
-		b = ((int) (b2 * 31));
+		r = ((int)31) << 11;
+		g = ((int)63) << 5;
+		b = ((int)31);
 		ipackedcol = r | g | b;
 		ipackedcol -= 32768;	// -32768 to 32767 range
 		ipackedcol &= 0xffff;
@@ -555,9 +555,9 @@ void Tesselator::tileQuad(float x1, float y1, float z1, float u1, float v1, floa
 		((int *)pShortData)[3] = tex2;
 		pShortData += 8;
 
-		r = ((int) (r3 * 31)) << 11;
-		g = ((int) (g3 * 63)) << 5;
-		b = ((int) (b3 * 31));
+		r = ((int)31) << 11;
+		g = ((int)63) << 5;
+		b = ((int)31);
 		ipackedcol = r | g | b;
 		ipackedcol -= 32768;	// -32768 to 32767 range
 		ipackedcol &= 0xffff;
@@ -572,9 +572,9 @@ void Tesselator::tileQuad(float x1, float y1, float z1, float u1, float v1, floa
 		((int *)pShortData)[3] = tex3;
 		pShortData += 8;
 
-		r = ((int) (r4 * 31)) << 11;
-		g = ((int) (g4 * 63)) << 5;
-		b = ((int) (b4 * 31));
+		r = ((int)31) << 11;
+		g = ((int)63) << 5;
+		b = ((int)31);
 		ipackedcol = r | g | b;
 		ipackedcol -= 32768;	// -32768 to 32767 range
 		ipackedcol &= 0xffff;
